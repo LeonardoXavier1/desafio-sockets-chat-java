@@ -3,8 +3,11 @@ package com.example.chatsocket;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    EditText editPort;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
