@@ -1,19 +1,35 @@
 package com.example.chatsocket.serverstuff;
 
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Scanner;
 
-public class Client {
+public class Client implements Serializable {
     private Socket socket;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private String username;
+    private static final String TAG = "CLIENT";
+
+    public Client(String ip, int port, String username) {
+        try {
+            this.socket = new Socket(ip, port);
+            this.bufferedWriter = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
+            this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+            this.username = username;
+        } catch (Exception e) {
+            e.printStackTrace();
+            closeEverything();
+        }
+    }
 
     public Client(Socket socket, String username) {
         try {
@@ -22,6 +38,7 @@ public class Client {
             this.bufferedReader = new BufferedReader(new InputStreamReader(socket.getInputStream())); 
             this.username = username;
         } catch (Exception e) {
+            e.printStackTrace();
             closeEverything();
         }
     }
@@ -41,6 +58,7 @@ public class Client {
                 bufferedWriter.flush();
             }
         } catch (Exception e) {
+            e.printStackTrace();
             closeEverything();
         }
     }
@@ -81,13 +99,13 @@ public class Client {
         }
     }
     
-    public static void main(String[] args) throws UnknownHostException, IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter your username for the group chat: ");
-        String username = scanner.nextLine();
-        Socket socket = new Socket("localhost", 1234);
-        Client client = new Client(socket, username);
-        client.listenForMessage();
-        client.sendMessage();
-    }
+//    public static void main(String[] args) throws UnknownHostException, IOException {
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Enter your username for the group chat: ");
+//        String username = scanner.nextLine();
+//        Socket socket = new Socket("localhost", 1234);
+//        Client client = new Client(socket, username);
+//        client.listenForMessage();
+//        client.sendMessage();
+//    }
 }

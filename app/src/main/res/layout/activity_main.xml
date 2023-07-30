@@ -13,10 +13,18 @@
         android:orientation="vertical" >
 
         <EditText
+            android:id="@+id/editIp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Digite o endereço de IP"
+            android:text="localhost"/>
+
+        <EditText
             android:id="@+id/editPort"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Digite a porta do servidor" />
+            android:hint="Digite a porta do servidor"
+            android:text="1234"/>
 
         <LinearLayout
             android:layout_width="match_parent"
