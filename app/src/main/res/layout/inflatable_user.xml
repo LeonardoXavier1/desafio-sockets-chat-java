@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+
+        android:maxWidth="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="TEXTO TESTE ENGORME --------TEXTO TESTE ENGORME --------TEXTO TESTE ENGORME --------TEXTO TESTE ENGORME --------"
+            android:textColor="@color/white" />
+
+<!--        android:maxWidth=""-->
+
+
+
+</LinearLayout>

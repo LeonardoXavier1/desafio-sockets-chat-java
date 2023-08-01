@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     protected void connectToServer(String ip, int port) {
         Intent chatIntent = new Intent(
                 MainActivity.this, ChatActivity.class
+
         );
 
         chatIntent.putExtra("ip", ip);
