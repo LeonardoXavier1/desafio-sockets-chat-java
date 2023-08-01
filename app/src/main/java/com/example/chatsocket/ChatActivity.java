@@ -89,6 +89,7 @@ public class ChatActivity extends AppCompatActivity {
             }).start();
         }
 
+
         public void listenForMessage() {
             new Thread(() -> {
                 String msgFromGroupChat;
