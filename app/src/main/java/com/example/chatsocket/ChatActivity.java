@@ -74,7 +74,7 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         public void sendMessage(String messageToSend) {
-            new Thread(() -> {
+            runOnUiThread(() -> {
                 try {
                     if (socket.isConnected()) {
                         bufferedWriter.write(messageToSend);
@@ -86,12 +86,25 @@ public class ChatActivity extends AppCompatActivity {
                     e.printStackTrace();
                     closeEverything();
                 }
-            }).start();
+            });
+            /*new Thread(() -> {
+                try {
+                    if (socket.isConnected()) {
+                        bufferedWriter.write(messageToSend);
+                        bufferedWriter.newLine();
+                        bufferedWriter.flush();
+                        Log.e(TAG, "MANDOU MENSAGEM: " + messageToSend);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    closeEverything();
+                }
+            }).start();*/
         }
 
 
         public void listenForMessage() {
-            new Thread(() -> {
+            runOnUiThread(() -> {
                 String msgFromGroupChat;
 
                 while (socket.isConnected()) {
@@ -104,7 +117,21 @@ public class ChatActivity extends AppCompatActivity {
                         closeEverything();
                     }
                 }
-            }).start();
+            });
+            /*new Thread(() -> {
+                String msgFromGroupChat;
+
+                while (socket.isConnected()) {
+                    try {
+                        Log.e(TAG, "Está escutando!");
+                        msgFromGroupChat = bufferedReader.readLine();
+                        textStream.append("\n" + msgFromGroupChat);
+                        Log.e(TAG, "PEGOU A MENSAGEM: " + msgFromGroupChat);
+                    } catch (Exception e) {
+                        closeEverything();
+                    }
+                }
+            }).start();*/
         }
 
         public void closeEverything() {
