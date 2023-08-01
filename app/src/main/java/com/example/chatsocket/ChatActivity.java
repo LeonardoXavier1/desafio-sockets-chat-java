@@ -69,12 +69,13 @@ public class ChatActivity extends AppCompatActivity {
                 listenForMessage();
             } catch (IOException e) {
                 e.printStackTrace();
+                Log.e(TAG, e.getMessage() + "\n" + e.getLocalizedMessage() + "\n" + e.toString() + "\nrun");
                 closeEverything();
             }
         }
 
         public void sendMessage(String messageToSend) {
-            runOnUiThread(() -> {
+            new Thread(() -> {
                 try {
                     if (socket.isConnected()) {
                         bufferedWriter.write(messageToSend);
@@ -84,54 +85,30 @@ public class ChatActivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    Log.e(TAG, e.getMessage() + "\n" + e.getLocalizedMessage() + "\n" + e.toString() + "\nsendMessage");
                     closeEverything();
                 }
-            });
-            /*new Thread(() -> {
-                try {
-                    if (socket.isConnected()) {
-                        bufferedWriter.write(messageToSend);
-                        bufferedWriter.newLine();
-                        bufferedWriter.flush();
-                        Log.e(TAG, "MANDOU MENSAGEM: " + messageToSend);
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    closeEverything();
-                }
-            }).start();*/
+            }).start();
         }
 
 
         public void listenForMessage() {
-            runOnUiThread(() -> {
+            new Thread(() -> {
                 String msgFromGroupChat;
 
                 while (socket.isConnected()) {
                     try {
                         Log.e(TAG, "Está escutando!");
                         msgFromGroupChat = bufferedReader.readLine();
-                        textStream.append("\n" + msgFromGroupChat);
+                        String finalMsgFromGroupChat = msgFromGroupChat;
+                        runOnUiThread(() -> textStream.append("\n" + finalMsgFromGroupChat));
                         Log.e(TAG, "PEGOU A MENSAGEM: " + msgFromGroupChat);
                     } catch (Exception e) {
+                        Log.e(TAG, e.getMessage() + "\n" + e.getLocalizedMessage() + "\n" + e.toString() + "\nlistenForMessage");
                         closeEverything();
                     }
                 }
-            });
-            /*new Thread(() -> {
-                String msgFromGroupChat;
-
-                while (socket.isConnected()) {
-                    try {
-                        Log.e(TAG, "Está escutando!");
-                        msgFromGroupChat = bufferedReader.readLine();
-                        textStream.append("\n" + msgFromGroupChat);
-                        Log.e(TAG, "PEGOU A MENSAGEM: " + msgFromGroupChat);
-                    } catch (Exception e) {
-                        closeEverything();
-                    }
-                }
-            }).start();*/
+            }).start();
         }
 
         public void closeEverything() {
@@ -150,6 +127,7 @@ public class ChatActivity extends AppCompatActivity {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                Log.e(TAG, e.getMessage() + "\n" + e.getLocalizedMessage() + "\n" + e.toString() + "\ncloseEverything");
             }
         }
     }
