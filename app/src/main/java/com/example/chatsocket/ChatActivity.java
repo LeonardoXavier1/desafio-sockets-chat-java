@@ -3,6 +3,7 @@ package com.example.chatsocket;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,6 +18,8 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 
 public class ChatActivity extends AppCompatActivity {
+    private final String TAG = "ÇÇÇ";
+
     String ip;
     int port;
 
@@ -53,6 +56,7 @@ public class ChatActivity extends AppCompatActivity {
         public Client(String ip, int port) {
             this.ip = ip;
             this.port = port;
+            Log.e(TAG, ip + " " + port);
             start();
         }
 
@@ -76,6 +80,7 @@ public class ChatActivity extends AppCompatActivity {
                         bufferedWriter.write(messageToSend);
                         bufferedWriter.newLine();
                         bufferedWriter.flush();
+                        Log.e(TAG, "MANDOU MENSAGEM: " + messageToSend);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -90,8 +95,10 @@ public class ChatActivity extends AppCompatActivity {
 
                 while (socket.isConnected()) {
                     try {
+                        Log.e(TAG, "Está escutando!");
                         msgFromGroupChat = bufferedReader.readLine();
                         textStream.append("\n" + msgFromGroupChat);
+                        Log.e(TAG, "PEGOU A MENSAGEM: " + msgFromGroupChat);
                     } catch (Exception e) {
                         closeEverything();
                     }
@@ -101,6 +108,7 @@ public class ChatActivity extends AppCompatActivity {
 
         public void closeEverything() {
             try {
+                Log.e(TAG, "DEU ALGUMA COISA ERRADA!");
                 if (bufferedReader != null) {
                     bufferedReader.close();
                 }
@@ -116,16 +124,5 @@ public class ChatActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-
-//        public class SendMessageTask extends AsyncTask<String, Void, Void> {
-//            @Override
-//            protected Void doInBackground(String... msg) {
-//                if (msg.length > 0) {
-//                    String messageToSend = msg[0];
-//                    cl
-//                }
-//                return null;
-//            }
-//        }
     }
 }
