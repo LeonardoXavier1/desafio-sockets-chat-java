@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8F8A8A"
+    android:background="#D8D9C3"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:fontFamily="sans-serif-condensed-medium"
             android:gravity="center"
             android:text="SEJA BEM-VINDO !"
-            android:textColor="#FFFFFF"
+            android:textColor="#000000"
             android:textSize="24sp" />
 
         <LinearLayout
@@ -36,7 +36,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Digite o seu apelido"
                 android:maxLines="1"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#000000" />
 
             <EditText
                 android:id="@+id/editIp"
@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Digite o endereço de IP do servidor"
                 android:maxLines="1"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#000000" />
 
             <EditText
                 android:id="@+id/editPort"
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:hint="Digite a porta do servidor"
                 android:maxLines="1"
-                android:textColorHint="#FFFFFF" />
+                android:textColorHint="#000000" />
 
             <Button
                 android:id="@+id/btnEnterServer"

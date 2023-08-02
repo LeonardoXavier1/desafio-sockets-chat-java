@@ -2,24 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#8F8A8A"
+    android:background="#FFFFF"
     android:orientation="vertical">
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="670dp"
+        android:background="@drawable/background_content_top"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1">
 
         <LinearLayout
-            android:id="@+id/msgContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent">
 
-            <!--<TextView
+            <TextView
                 android:id="@+id/textStream"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />-->
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </LinearLayout>
     </ScrollView>
