@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#8F8A8A"
+    android:orientation="vertical">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-         >
-
-        <TextView
-            android:id="@+id/textStream"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/textStream"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
     </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <EditText
             android:id="@+id/editMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:layout_weight="1"
-            android:layout_margin="8dp" />
+            android:background="@drawable/edittext_bg"
+            android:hint="Digite sua mensagem aqui"
+            android:padding="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#FFFFFF" />
 
         <Button
             android:id="@+id/btnSend"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Enviar"
+            android:backgroundTint="#6F0F8A"
             android:layout_margin="8dp"
-            />
+            android:text="Enviar" />
 
     </LinearLayout>
 

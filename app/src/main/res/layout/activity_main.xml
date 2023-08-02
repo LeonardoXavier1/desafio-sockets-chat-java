@@ -3,41 +3,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#8F8A8A"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="15dp"
-        android:layout_gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/editIp"
+        <TextView
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:hint="Digite o endereço de IP do servidor"/>
+            android:layout_marginTop="100dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:gravity="center"
+            android:text="SEJA BEM-VINDO !"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/editPort"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:hint="Digite a porta do servidor"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="80dp"
+            android:orientation="vertical"
+            android:padding="15dp">
 
-        <Button
-            android:id="@+id/btnEnterServer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Entrar em um servidor" />
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Digite seu apelido"
+                android:inputType="text"
+                android:textColorHint="#FFFFFF" />
 
-        <Button
-            android:id="@+id/btnCreateServer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Iniciar servidor" />
+            <EditText
+                android:id="@+id/editIp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite o endereço de IP do servidor"
+                android:maxLines="1"
+                android:textColorHint="#FFFFFF" />
 
+            <EditText
+                android:id="@+id/editPort"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Digite a porta do servidor"
+                android:maxLines="1"
+                android:textColorHint="#FFFFFF" />
+
+            <Button
+                android:id="@+id/btnEnterServer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#6F0F8A"
+                android:text="Entrar em um servidor" />
+
+            <Button
+                android:id="@+id/btnCreateServer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#6F0F8A"
+                android:text="Iniciar servidor" />
+
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
