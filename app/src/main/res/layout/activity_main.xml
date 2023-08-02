@@ -31,12 +31,11 @@
             android:padding="15dp">
 
             <EditText
-                android:id="@+id/editTextText"
+                android:id="@+id/editApelido"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Digite seu apelido"
-                android:inputType="text"
+                android:hint="Digite o seu apelido"
+                android:maxLines="1"
                 android:textColorHint="#FFFFFF" />
 
             <EditText

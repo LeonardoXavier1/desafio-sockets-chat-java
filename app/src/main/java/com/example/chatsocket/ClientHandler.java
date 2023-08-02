@@ -7,15 +7,15 @@ import java.io.OutputStreamWriter;
 import java.net.Socket;
 import java.util.ArrayList;
 
-public class ClientHandler extends Thread implements Runnable {
+public class ClientHandler implements Runnable {
     private static ArrayList<ClientHandler> clientHandlers = new ArrayList<>();
     private Socket socket;
+    private String clientUsername;
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
 
     public ClientHandler(Socket socket) {
         this.socket = socket;
-        start();
     }
 
     @Override
@@ -42,9 +42,11 @@ public class ClientHandler extends Thread implements Runnable {
     public void broadcastMessage(String messageToSend) {
         for (ClientHandler clientHandler : clientHandlers) {
             try {
-                clientHandler.bufferedWriter.write(messageToSend);
-                clientHandler.bufferedWriter.newLine();
-                clientHandler.bufferedWriter.flush();
+                if (clientHandler != this) {
+                    clientHandler.bufferedWriter.write(messageToSend);
+                    clientHandler.bufferedWriter.newLine();
+                    clientHandler.bufferedWriter.flush();
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 closeEverything();

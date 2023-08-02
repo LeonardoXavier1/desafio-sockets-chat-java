@@ -20,10 +20,7 @@ import java.net.Socket;
 public class ChatActivity extends AppCompatActivity {
     private final String TAG = "ÇÇÇ";
 
-    String ip;
-    int port;
-
-    TextView textStream;
+    //TextView textStream;
     EditText editMsg;
     Button btnSend;
 
@@ -34,30 +31,32 @@ public class ChatActivity extends AppCompatActivity {
 
         Intent chatIntent = getIntent();
 
-        ip = chatIntent.getStringExtra("ip");
-        port = chatIntent.getIntExtra("port", 0);
+        String apelido = chatIntent.getStringExtra("apelido");
+        String ip = chatIntent.getStringExtra("ip");
+        int port = chatIntent.getIntExtra("port", 0);
 
-        textStream = findViewById(R.id.textStream);
+        //textStream = findViewById(R.id.textStream);
         editMsg = findViewById(R.id.editMsg);
         btnSend = findViewById(R.id.btnSend);
 
-        Client client = new Client(ip, port);
+        Client client = new Client(apelido, ip, port);
 
         btnSend.setOnClickListener(view -> client.sendMessage(editMsg.getText().toString()));
     }
 
-    protected class Client extends Thread implements Runnable {
+    protected class Client implements Runnable {
+        private String username;
         private String ip;
         private int port;
         private Socket socket;
         private BufferedReader bufferedReader;
         private BufferedWriter bufferedWriter;
 
-        public Client(String ip, int port) {
+        public Client(String username, String ip, int port) {
+            this.username = username;
             this.ip = ip;
             this.port = port;
             Log.e(TAG, ip + " " + port);
-            start();
         }
 
         @Override
@@ -75,7 +74,7 @@ public class ChatActivity extends AppCompatActivity {
         }
 
         public void sendMessage(String messageToSend) {
-            new Thread(() -> {
+            //new Thread(() -> {
                 try {
                     if (socket.isConnected()) {
                         bufferedWriter.write(messageToSend);
@@ -88,7 +87,7 @@ public class ChatActivity extends AppCompatActivity {
                     Log.e(TAG, e.getMessage() + "\n" + e.getLocalizedMessage() + "\n" + e.toString() + "\nsendMessage");
                     closeEverything();
                 }
-            }).start();
+            //}).start();
         }
 
 
@@ -98,11 +97,12 @@ public class ChatActivity extends AppCompatActivity {
 
                 while (socket.isConnected()) {
                     try {
-                        Log.e(TAG, "Está escutando!");
+
+                        /*Log.e(TAG, "Está escutando!");
                         msgFromGroupChat = bufferedReader.readLine();
                         String finalMsgFromGroupChat = msgFromGroupChat;
                         runOnUiThread(() -> textStream.append("\n" + finalMsgFromGroupChat));
-                        Log.e(TAG, "PEGOU A MENSAGEM: " + msgFromGroupChat);
+                        Log.e(TAG, "PEGOU A MENSAGEM: " + msgFromGroupChat);*/
                     } catch (Exception e) {
                         Log.e(TAG, e.getMessage() + "\n" + e.getLocalizedMessage() + "\n" + e.toString() + "\nlistenForMessage");
                         closeEverything();
