@@ -10,11 +10,11 @@
     android:layout_marginRight="16dp">
 
 <TextView
-android:layout_width="wrap_content"
-android:layout_height="wrap_content"
-android:maxLines="100"
-android:maxWidth="200dp"
-android:text="user recive!"
-android:textColor="@color/white" />
+    android:id="@+id/textViewMessage"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:maxLines="100"
+    android:maxWidth="200dp"
+    android:textColor="@color/white" />
 
     </LinearLayout>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import java.net.Socket;
 
 public class ChatActivity extends AppCompatActivity {
     private final String TAG = "ÇÇÇ";
+    private LinearLayout messageContainer;
 
     //TextView textStream;
     EditText editMsg;
@@ -38,10 +40,44 @@ public class ChatActivity extends AppCompatActivity {
         //textStream = findViewById(R.id.textStream);
         editMsg = findViewById(R.id.editMsg);
         btnSend = findViewById(R.id.btnSend);
+        messageContainer = findViewById(R.id.messageContainer);
 
         Client client = new Client(apelido, ip, port);
 
-        btnSend.setOnClickListener(view -> client.sendMessage(editMsg.getText().toString()));
+        btnSend.setOnClickListener(view -> {
+            String message = editMsg.getText().toString().trim();
+            if (!message.isEmpty()) {
+                // Envia a mensagem e adiciona à lista de mensagens enviadas
+                client.sendMessage(message);
+                addSentMessage(message);
+
+                // Limpa o campo de edição após o envio
+                editMsg.setText("");
+            }
+        });    }
+
+    private void addSentMessage(String message) {
+        // Infla o layout da mensagem enviada
+        LinearLayout sentMessageLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.inflatable_user, null);
+
+        // Define o texto da mensagem
+        TextView textViewMessage = sentMessageLayout.findViewById(R.id.textViewMessage);
+        textViewMessage.setText(message);
+
+        // Adiciona o layout ao container de mensagens
+        messageContainer.addView(sentMessageLayout);
+    }
+
+    private void addReceivedMessage(String message) {
+        // Infla o layout da mensagem recebida
+        LinearLayout receivedMessageLayout = (LinearLayout) getLayoutInflater().inflate(R.layout.inflatble_user2, null);
+
+        // Define o texto da mensagem
+        TextView textViewMessage = receivedMessageLayout.findViewById(R.id.textViewMessage);
+        textViewMessage.setText(message);
+
+        // Adiciona o layout ao container de mensagens
+        messageContainer.addView(receivedMessageLayout);
     }
 
     protected class Client implements Runnable {
